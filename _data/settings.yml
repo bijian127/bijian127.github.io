@@ -2,14 +2,14 @@
 #-------------------------------
 # General Site Settings
 
-title: Blog Of Bijian
+title: 不庸AI
 logo:
-author: themefisher
-description: only a Java Development Engineer
-email: bijian127xxxx@live.com
+author: Bijian
+description: AI 技术探索与实践笔记
+email: bijian127@live.com
 phone: +86 176 xxxx 3622
 address: Hefei City, Anhui Province, China
-copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
+copyright: Copyright &copy; 2026 不庸AI
 
 menu:
   - { name: About, link: "/about" }
@@ -36,13 +36,10 @@ disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m <br> Bijian <br> Java Development Engineer
+  hero-title: 不庸AI <br> 探索 · 实践 · 分享
 
 social:
-  - { icon: "ti-facebook", link: "#" }
-  - { icon: "ti-instagram", link: "#" }
-  - { icon: "ti-dribbble", link: "#" }
-  - { icon: "ti-twitter", link: "#" }
+  - { icon: "ti-github", link: "https://github.com/bijian127" }
 
 #-------------------------------
 # About (Section and Page)
