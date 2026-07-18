@@ -1,0 +1,39 @@
+---
+layout: post
+title: "用 headroom 省掉 60-95% 的 AI 费用"
+date: 2026-07-18 08:00:00 +0800
+categories: 工具工坊
+---
+
+
+**时间**：周四 20:00 | **字数**：2000-2500字 | **形式**：深度长文 + 代码截图
+
+**场景**：你用 AI 处理工作，每个月 API 费用好几百块。大部分 token 其实是冗余的。
+
+**效果预览**：
+- Before：每次调用 AI 发送 10 万 token，月费 500 元
+- After：headroom 先压缩到 1-4 万 token，月费降到 50-200 元，输出质量几乎不变
+
+**操作步骤**：
+1. GitHub 搜索 headroom（chopratejas/headroom，周增 1.4 万 Star）
+2. 安装 Python 库：`pip install headroom --break-system-packages`
+3. 三种使用方式：Python 库 / HTTP 代理（透明压缩）/ MCP Server
+4. 推荐 HTTP 代理模式——零代码改动，所有现有 AI 调用自动压缩
+
+```python
+from headroom import compress
+compressed = compress(original_text, ratio=0.1)  # 压缩到10%
+
+headroom --proxy --port 8080 --compress-ratio 0.15
+
+```
+
+**关键数据**：headroom 可将 RAG 检索结果、日志、工具输出等文本压缩 60-95%，在保留关键信息的同时大幅降低 token 消耗。GitHub Star 已超 1.7 万。
+
+你每月花多少在 AI API 上？有没有觉得"亏了"？
+
+**项目来源**：github.com/chopratejas/headroom
+
+---
+
+
