@@ -1,18 +1,27 @@
 ---
 layout: about
-title: About Me
-author: Johnathan Smith
+title: 关于我
+author: Bi
 image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat.
+我是 Bi，一名系统工程师，目前在新能源领域从事系统方案设计。
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident.
+此前多年专注于 Java 后端开发，对分布式系统、微服务架构有深入理解。从编码转向系统设计后，视角从"怎么实现"切换到"为什么这样做"，这种转变让我对技术有了更立体的认知。
 
-Deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+## 关于不庸AI
+
+不庸AI 是我分享 AI 技术探索的个人博客。"不庸"取自"不庸人自扰"——在 AI 技术每天都有新名词的时代，保持冷静、深度思考，比追逐热点更重要。
+
+### 这里会写什么
+
+- **AI 工程实践**：大模型部署、RAG、Agent 开发
+- **工程效率**：开发工具链、自动化工作流
+- **系统设计**：架构思考、方案设计方法
+- **学习笔记**：论文解读、技术复盘
+
+### 联系我
+
+- GitHub: [bijian127](https://github.com/bijian127)
+- Email: bijian127@live.com
