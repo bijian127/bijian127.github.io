@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "为什么 AI 总是输出"正确的废话""
+title: '为什么 AI 总是输出"正确的废话"'
 date: 2026-07-18 08:00:00 +0800
 categories: Prompt炼金术
 ---
