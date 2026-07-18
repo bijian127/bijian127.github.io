@@ -25,6 +25,9 @@ sass:
   sass_dir: assets/scss
   style: compressed
 
+# Show posts with future dates (so today's post appears immediately)
+future: true
+
 # Exclude from processing.
 exclude:
   - Gemfile
