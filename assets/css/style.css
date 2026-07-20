@@ -325,6 +325,14 @@ body {
 .article-body pre { background: #1e1b2e; border-radius: 12px; padding: 20px; overflow-x: auto; margin: 28px 0; }
 .article-body pre code { font-family: var(--mono); font-size: 14px; color: #e8e6f5; line-height: 1.7; white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word; }
 
+/* Markdown 表格 */
+.article-body table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 28px 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(204,204,230,0.9); }
+.article-body th { background: #ede9ff; text-align: left; padding: 10px 14px; font-weight: 600; color: var(--ink); border-bottom: 2px solid rgba(204,204,230,0.9); }
+.article-body td { padding: 10px 14px; border-bottom: 1px solid rgba(204,204,230,0.6); color: var(--ink-soft); }
+.article-body tr:last-child td { border-bottom: none; }
+.article-body table thead th { font-size: 13px; }
+.article-body tbody tr:hover { background: rgba(155,140,255,0.06); }
+
 .article-divider { height: 1px; background: rgba(204,204,230,0.9); margin: 36px 0; }
 .post-nav { max-width: 900px; margin: 36px auto 0; display: flex; gap: 16px; flex-wrap: wrap; }
 .post-nav .pn-card { flex: 1; min-width: 280px; border-radius: var(--r-md); padding: 20px 24px; text-decoration: none; color: inherit; transition: transform .2s; }
