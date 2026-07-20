@@ -1,55 +1,56 @@
 ---
 layout: default
+page_id: blog
 ---
-<!-- page title -->
-<section class="page-title bg-primary position-relative">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1 class="text-white font-tertiary">Blogs</h1>
-      </div>
-    </div>
+{% assign display_tags = page.tags | default: page.categories %}
+<header class="article-header">
+  {% if display_tags and display_tags.size > 0 %}
+  <div class="article-tags" style="margin-bottom:16px">
+    {% for tag in display_tags %}
+    <span class="tag-pill"{% if forloop.index == 1 %} style="background:linear-gradient(135deg,var(--violet-1),var(--violet-2))"{% elsif forloop.index == 2 %} style="background:linear-gradient(135deg,var(--mint-1),var(--mint-2))"{% elsif forloop.index == 3 %} style="background:linear-gradient(135deg,var(--peach-1),var(--peach-2))"{% else %} style="background:linear-gradient(135deg,var(--gold-1),var(--gold-2))"{% endif %}>{{ tag }}</span>
+    {% endfor %}
   </div>
-  <!-- background shapes -->
-  <img src="{{ site.baseurl }}/assets/images/illustrations/page-title.png" alt="illustrations" class="bg-shape-1 w-100">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/leaf-pink-round.png" alt="illustrations" class="bg-shape-2">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/dots-cyan.png" alt="illustrations" class="bg-shape-3">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/leaf-orange.png" alt="illustrations" class="bg-shape-4">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/leaf-yellow.png" alt="illustrations" class="bg-shape-5">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/dots-group-cyan.png" alt="illustrations" class="bg-shape-6">
-  <img src="{{ site.baseurl }}/assets/images/illustrations/leaf-cyan-lg.png" alt="illustrations" class="bg-shape-7">
-</section>
-<!-- /page title -->
+  {% endif %}
+  <span class="kicker">ARTICLE · 文章</span>
+  <h1>{{ page.title }}</h1>
+  <p class="meta">{{ page.author | default: site.author }} · {{ page.date | date: '%Y-%m-%d' }} · 约 {{ page.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</p>
+</header>
 
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3 class="font-tertiary mb-5">{{ page.title | escape }}</h3>
-        <p class="font-secondary">Published on {{ page.date | date: '%b %d, %Y' }} by <span class="text-primary">{{ page.author }}</span
-            class="text-primary"> on {% for tag in page.tags %}<span>{{ tag }} </span>{% endfor %}</p>
-        <div class="content">
-          <img src="{{page.image | relative_url }}" class="img-fluid rounded float-left mr-5 mb-4" alt="{{page.title}}">
-          {{ content }}
-        </div>
-      </div>
-    </div>
+{% if page.image %}
+<div class="article-cover" style="max-width:var(--maxw);margin:0 auto 30px;border-radius:28px;overflow:hidden">
+  <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" style="width:100%;height:440px;object-fit:cover">
+</div>
+{% endif %}
+
+<article class="article-body glass">
+  {{ content }}
+</article>
+
+<div class="post-nav">
+  {% if page.previous.url %}
+  <a class="pn-card glass" href="{{ page.previous.url | relative_url }}">
+    <div class="pn-label">← 上一篇</div>
+    <div class="pn-title">{{ page.previous.title }}</div>
+  </a>
+  {% else %}
+  <div class="pn-card glass" style="opacity:0.4">
+    <div class="pn-label">← 上一篇</div>
+    <div class="pn-title">没有更早的文章了</div>
   </div>
-</section>
-
-{% if site.data.settings.disqus-identifier %} {% include disqus-comments.html %} {% endif %}
-
-<!-- blog -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="section-title">Similar Stories</h2>
-      </div>
-      {% for post in site.posts offset:0 limit:3 %}
-      {% include post.html %}
-      {% endfor %}
-    </div>
+  {% endif %}
+  {% if page.next.url %}
+  <a class="pn-card next glass" href="{{ page.next.url | relative_url }}">
+    <div class="pn-label">下一篇 →</div>
+    <div class="pn-title">{{ page.next.title }}</div>
+  </a>
+  {% else %}
+  <div class="pn-card next glass" style="opacity:0.4">
+    <div class="pn-label">下一篇 →</div>
+    <div class="pn-title">没有更新的文章了</div>
   </div>
-</section>
-<!-- /blog -->
+  {% endif %}
+</div>
+
+<div class="back-btn-wrap">
+  <a class="btn-primary" href="{{ site.baseurl }}/blog">返回博客</a>
+</div>

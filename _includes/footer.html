@@ -1,34 +1,35 @@
-<!-- footer -->
-<footer class="bg-dark footer-section">
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h5 class="text-light">Email</h5>
-          <p class="text-white paragraph-lg font-secondary">{{ site.data.settings.email }}</p>
-        </div>
-        <div class="col-md-4">
-          <h5 class="text-light">Phone</h5>
-          <p class="text-white paragraph-lg font-secondary">{{ site.data.settings.phone }}</p>
-        </div>
-        <div class="col-md-4">
-          <h5 class="text-light">Address</h5>
-          <p class="text-white paragraph-lg font-secondary">{{ site.data.settings.address }}</p>
-        </div>
+<footer class="footer glass">
+  <div class="footer-top">
+    <div class="brand-col">
+      <div class="footer-logo">{{ site.data.settings.title }}</div>
+      <div class="footer-tag">{{ site.data.settings.description }}</div>
+    </div>
+    <div class="footer-cols">
+      <div class="fcol">
+        <div class="fcol-head">导航</div>
+        <a href="{{ site.baseurl }}/">首页</a>
+        <a href="{{ site.baseurl }}/blog">博客</a>
+        <a href="{{ site.baseurl }}/about">关于</a>
+      </div>
+      <div class="fcol">
+        <div class="fcol-head">关于</div>
+        <a href="{{ site.baseurl }}/about">关于我</a>
+        <a href="https://github.com/bijian127">GitHub</a>
+        <a href="mailto:{{ site.data.settings.email }}">联系我</a>
+      </div>
+      <div class="fcol">
+        <div class="fcol-head">关注</div>
+        <a href="{{ site.baseurl }}/#subscribe">微信公众号</a>
+        <a href="https://github.com/bijian127/bijian127.github.io">博客源码</a>
+        <a href="https://bijian127.github.io">GitHub Pages</a>
       </div>
     </div>
   </div>
-  <div class="border-top text-center border-dark py-5">
-    <p class="mb-0 text-light">{{site.data.settings.copyright | markdownify}}</p>
+  <div class="divider"></div>
+  <div class="bottom-bar">
+    <span>{{ site.data.settings.copyright | strip_html }}</span>
+    <span>由 Jekyll 驱动 · 托管于 GitHub Pages</span>
   </div>
 </footer>
-<!-- /footer -->
 
-
-<!-- JS Plugins -->
-{% for js in site.data.plugins.js %}
-<script src="{{ js | relative_url }}"></script>
-{% endfor %}
-
-<!-- Main Script -->
-<script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>

@@ -1,11 +1,118 @@
 ---
 layout: default
+page_id: home
 ---
 
-{% include hero-section.html %}
+<!-- Hero -->
+<header class="hero wrap">
+  <span class="kicker">PERSONAL BLOG · 个人博客</span>
+  <h1 class="h-hero">{{ site.data.settings.hero.hero-title | strip_html }}</h1>
+  <p class="role">{{ site.author }} · {{ site.data.settings.hero.hero-slogan }}</p>
+  <p class="lead">{{ site.data.settings.description }}</p>
+  <div class="cta-row">
+    <a class="btn-primary" href="{{ site.baseurl }}/blog">读最新文章</a>
+    <a class="btn-ghost" href="{{ site.baseurl }}/about">关于我</a>
+  </div>
+  <p class="hero-stats">{{ site.posts.size }} 篇文章 &nbsp;·&nbsp; {{ site.posts | map: 'categories' | flatten | uniq | size }} 个分类 &nbsp;·&nbsp; 持续更新中</p>
+</header>
 
-{% include columns-section.html %}
+<!-- 最新文章 -->
+<section class="section wrap">
+  <div class="section-head">
+    <div class="title-wrap">
+      <span class="kicker">LATEST</span>
+      <h2>最新文章</h2>
+    </div>
+    <a class="link-pill" href="{{ site.baseurl }}/blog">查看全部 →</a>
+  </div>
+  <div class="cards-row">
+    {% assign recent_posts = site.posts | slice: 0, 4 %}
+    {% for post in recent_posts %}
+    <a class="blog-card glass" href="{{ post.url | relative_url }}">
+      {% if post.image %}
+      <img class="card-cover" src="{{ post.image | relative_url }}" alt="{{ post.title }}" style="object-fit:cover">
+      {% else %}
+        {% assign colors = "cv-violet,cv-mint,cv-peach,cv-gold" | split: "," %}
+        {% assign idx = forloop.index0 | modulo: 4 %}
+      <div class="card-cover {{ colors[idx] }}"></div>
+      {% endif %}
+      <div class="card-body">
+        {% assign post_tags = post.tags | default: post.categories %}
+        {% if post_tags and post_tags.size > 0 %}
+        <span class="tag-pill">{{ post_tags[0] }}</span>
+        {% endif %}
+        <h3 class="card-title">{{ post.title }}</h3>
+        <p class="card-excerpt">{{ post.excerpt | strip_html | truncate: 60 }}</p>
+        <span class="card-meta">{{ post.date | date: '%Y-%m-%d' }} · {{ post.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
 
-{% include about-section.html %}
+<!-- 分类浏览 -->
+{% if site.data.settings.columns %}
+<section class="section wrap">
+  <div class="section-head">
+    <div class="title-wrap">
+      <span class="kicker">CATEGORIES</span>
+      <h2>分类浏览</h2>
+    </div>
+    <a class="link-pill" href="{{ site.baseurl }}/blog">查看全部 →</a>
+  </div>
+  <div class="cat-grid">
+    {% assign colors_bg = "background:linear-gradient(135deg,#8c9bff,#b5a0ff),background:linear-gradient(135deg,var(--mint-1),var(--mint-2)),background:linear-gradient(135deg,var(--peach-1),var(--peach-2)),background:linear-gradient(135deg,var(--gold-1),var(--gold-2))" | split: "," %}
+    {% for col in site.data.settings.columns limit: 4 %}
+    <a class="cat-card glass" href="{{ site.baseurl }}/blog">
+      <div class="cat-icon" style="{{ colors_bg[forloop.index0] | default: colors_bg[0] }}"></div>
+      <h3 class="cat-name">{{ col.name | remove: col.icon }}</h3>
+      <p class="cat-desc">{{ col.desc }}</p>
+      {% assign tag_name = col.name | remove: col.icon | strip %}
+      <span class="cat-count">{{ col.time }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
-{% include blog-section.html %}
+<!-- 关于我 teaser -->
+<section class="section wrap">
+  <div class="section-head">
+    <div class="title-wrap">
+      <span class="kicker">ABOUT</span>
+      <h2>关于我</h2>
+    </div>
+  </div>
+  <div class="about-card glass">
+    <div class="about-avatar"></div>
+    <div class="about-text">
+      <p class="name">{{ site.author }}</p>
+      <p class="bio">{{ site.data.settings.blurb | strip_html | truncate: 120 }}</p>
+      <div class="chips">
+        <span class="chip" style="background:linear-gradient(135deg,#8c9bff,#b5a0ff)">系统工程师</span>
+        <span class="chip" style="background:linear-gradient(135deg,var(--mint-1),var(--mint-2))">新能源</span>
+        <span class="chip" style="background:linear-gradient(135deg,var(--peach-1),var(--peach-2))">AI</span>
+        <span class="chip" style="background:linear-gradient(135deg,var(--gold-1),var(--gold-2))">技术写作</span>
+      </div>
+    </div>
+    <a class="btn-primary about-more" href="{{ site.baseurl }}/about">了解更多 →</a>
+  </div>
+</section>
+
+<!-- 订阅：微信公众号 -->
+<section class="section wrap" id="subscribe">
+  <div class="subscribe-card glass">
+    <div class="sub-text">
+      <span class="wechat-badge">微信公众号</span>
+      <h3 class="sub-title">关注公众号，第一时间读到新文章</h3>
+      <p class="sub-desc">微信扫一扫右侧二维码，关注「{{ site.data.settings.title }}」，新文章与随笔第一时间推送。</p>
+      <p class="account-name">公众号名称：不庸AI</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-inner">
+        <span class="qr-label">公众号二维码</span>
+        <span class="qr-hint">待替换</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,15 +1,60 @@
 ---
-layout: page
-title: Blogs
+layout: default
+page_id: blog
+title: 博客
+description: 不庸AI — 所有文章列表
 ---
-<!-- blog -->
-<section class="section">
-  <div class="container">
-    <div class="row">
-      {% for post in site.posts %}
-      {% include post.html %}
-      {% endfor %}
-    </div>
+
+<header class="page-header wrap">
+  <span class="kicker">BLOG · 博客</span>
+  <h1>博客文章</h1>
+  <p class="sub">记录 AI、工具与效率的探索笔记</p>
+</header>
+
+<main class="wrap">
+  <!-- 筛选按钮 -->
+  <div class="filter-row">
+    <span class="filter-pill active" data-cat="all">全部</span>
+    {% assign all_tags = site.posts | map: 'categories' | flatten | uniq | sort %}
+    {% for tag in all_tags %}
+    <span class="filter-pill" data-cat="{{ tag }}">{{ tag }}</span>
+    {% endfor %}
   </div>
-</section>
-<!-- /blog -->
+
+  <!-- 精选文章（最新一篇） -->
+  {% assign featured = site.posts | first %}
+  {% if featured %}
+  {% assign feat_tags = featured.tags | default: featured.categories %}
+  <a class="featured-post glass" href="{{ featured.url | relative_url }}" data-cat="{{ feat_tags | first | default: '' }}">
+    <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
+    <div class="featured-content">
+      {% if feat_tags and feat_tags.size > 0 %}
+      <span class="tag-pill">{{ feat_tags[0] }}</span>
+      {% endif %}
+      <h3 class="post-title">{{ featured.title }}</h3>
+      <p class="post-excerpt">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
+      <span class="post-meta">{{ featured.date | date: '%Y-%m-%d' }} · {{ featured.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
+    </div>
+  </a>
+  {% endif %}
+
+  <!-- 全部文章列表 -->
+  <div class="post-list">
+    {% for post in site.posts %}
+    {% assign p_tags = post.tags | default: post.categories %}
+    <a class="post-card glass" href="{{ post.url | relative_url }}" data-cat="{{ p_tags | first | default: '' }}">
+      <div class="post-thumb
+        {% assign mod3 = forloop.index0 | modulo: 4 %}
+        {% if mod3 == 0 %}cv-violet{% elsif mod3 == 1 %}cv-mint{% elsif mod3 == 2 %}cv-peach{% else %}cv-gold{% endif %}
+      "></div>
+      <div class="post-content">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+        <span class="post-meta">
+          {% if p_tags and p_tags.size > 0 %}{{ p_tags[0] }} · {% endif %}{{ post.date | date: '%Y-%m-%d' }}
+        </span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</main>

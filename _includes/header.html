@@ -1,28 +1,15 @@
-<header class="navigation fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand font-tertiary h3" href="{{ site.baseurl }}/">
-      {% if site.data.settings.logo %}
-        <img src="{{ site.data.settings.logo | absolute_url }}" alt="{{ site.data.settings.title }}">
-        {% else if %}
-        <h3 class="text-white font-tertiary">{{site.data.settings.title}}</h3>
-      {% endif %}
+<div class="nav-wrap">
+  <nav class="navbar glass">
+    <a class="logo" href="{{ site.baseurl }}/">
+      <span class="logo-dot"></span>
+      <span class="logo-text">{{ site.data.settings.title }}</span>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-      aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse text-center" id="navigation">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
-        </li>
-        {% for link in site.data.settings.menu %}
-          <li class="nav-item {{ class }}">
-            <a class="nav-link" href="{{ link.link }}">{{ link.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+    <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="{{ site.baseurl }}/" data-nav="home">首页</a></li>
+      <li><a href="{{ site.baseurl }}/blog" data-nav="blog">博客</a></li>
+      <li><a href="{{ site.baseurl }}/about" data-nav="about">关于</a></li>
+    </ul>
+    <a class="btn-subscribe" href="{{ site.baseurl }}/#subscribe">关注公众号</a>
   </nav>
-</header>
+</div>

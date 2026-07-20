@@ -2,11 +2,22 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 {% include head.html %}
 
-<body>
+{% if page.page_id %}
+<body data-page="{{ page.page_id }}">
+{% else %}
+<body data-page="home">
+{% endif %}
+
+  <div class="blobs" aria-hidden="true">
+    <div class="blob mint"></div>
+    <div class="blob violet"></div>
+    <div class="blob peach"></div>
+    <div class="blob mint2"></div>
+  </div>
 
   {% include header.html %}
 
@@ -15,5 +26,4 @@ layout: compress
   {% include footer.html %}
 
 </body>
-
 </html>
