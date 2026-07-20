@@ -297,6 +297,7 @@ body {
 .article-body { max-width: 900px; margin: 0 auto; padding: 40px; border-radius: 28px; }
 .article-body p { font-size: 16px; color: var(--ink-soft); margin: 0 0 20px; line-height: 1.85; }
 .article-body h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; color: var(--ink); margin: 34px 0 14px; }
+.article-body img { max-width: 100%; height: auto; border-radius: 12px; display: block; margin: 24px auto; }
 .article-body .lead-p { font-size: 18px; color: var(--ink); }
 .quote { background: rgba(255,255,255,0.45); border: 1px solid var(--glass-border); border-radius: 14px;
   padding: 22px 24px; display: flex; gap: 16px; align-items: center; margin: 28px 0; }
