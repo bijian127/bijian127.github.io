@@ -103,8 +103,8 @@ body {
   padding: 14px 22px; border-radius: var(--r-md);
 }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-dot { width: 32px; height: 32px; border-radius: 14px;
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-2)); }
+.logo-dot { width: 32px; height: 32px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.logo-dot img { width: 100%; height: 100%; object-fit: cover; }
 .logo-text { font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--ink); }
 
 .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
