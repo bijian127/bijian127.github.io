@@ -1,4 +1,4 @@
-/* 云笺 · Aurora — 交互脚本 */
+/* 不庸AI — 交互脚本 */
 (function () {
   "use strict";
 
@@ -26,19 +26,39 @@
   // 博客筛选
   var filters = document.querySelectorAll(".filter-pill");
   var posts = document.querySelectorAll(".post-card, .featured-post");
+
+  function activateFilter(cat) {
+    if (!filters.length) return;
+    filters.forEach(function (p) { p.classList.remove("active"); });
+    var target = document.querySelector('.filter-pill[data-cat="' + cat + '"]');
+    if (target) {
+      target.classList.add("active");
+    } else {
+      // fallback to "all"
+      var allPill = document.querySelector('.filter-pill[data-cat="all"]');
+      if (allPill) allPill.classList.add("active");
+      cat = "all";
+    }
+    posts.forEach(function (post) {
+      var postCat = post.getAttribute("data-cat");
+      var show = cat === "all" || !postCat || postCat === cat;
+      post.style.display = show ? "" : "none";
+    });
+  }
+
   if (filters.length) {
     filters.forEach(function (pill) {
       pill.addEventListener("click", function () {
-        filters.forEach(function (p) { p.classList.remove("active"); });
-        pill.classList.add("active");
-        var cat = pill.getAttribute("data-cat");
-        posts.forEach(function (post) {
-          var postCat = post.getAttribute("data-cat");
-          var show = cat === "all" || !postCat || postCat === cat;
-          post.style.display = show ? "" : "none";
-        });
+        activateFilter(pill.getAttribute("data-cat"));
       });
     });
+
+    // 读取 URL ?cat= 参数
+    var params = new URLSearchParams(window.location.search);
+    var urlCat = params.get("cat");
+    if (urlCat) {
+      activateFilter(decodeURIComponent(urlCat));
+    }
   }
 
   // 标签云点击 → 高亮（演示用）

@@ -61,13 +61,13 @@ page_id: home
     <a class="link-pill" href="{{ site.baseurl }}/blog">查看全部 →</a>
   </div>
   <div class="cat-grid">
-    {% assign colors_bg = "background:linear-gradient(135deg,#8c9bff,#b5a0ff),background:linear-gradient(135deg,var(--mint-1),var(--mint-2)),background:linear-gradient(135deg,var(--peach-1),var(--peach-2)),background:linear-gradient(135deg,var(--gold-1),var(--gold-2))" | split: "," %}
+    {% assign pillar_imgs = "pillar-01-morning-report.jpg,pillar-02-slacking-lab.jpg,pillar-03-office-skills.jpg,pillar-04-tool-workshop.jpg,pillar-05-prompt-alchemy.jpg,pillar-06-reader-submission.jpg" | split: "," %}
     {% for col in site.data.settings.columns limit: 4 %}
-    <a class="cat-card glass" href="{{ site.baseurl }}/blog">
-      <div class="cat-icon" style="{{ colors_bg[forloop.index0] | default: colors_bg[0] }}"></div>
-      <h3 class="cat-name">{{ col.name | remove: col.icon }}</h3>
+    {% assign cat_name = col.name | remove: col.icon | strip %}
+    <a class="cat-card glass" href="{{ site.baseurl }}/blog?cat={{ cat_name | url_encode }}">
+      <div class="cat-icon" style="background-image:url('{{ '/assets/images/' | relative_url }}{{ pillar_imgs[forloop.index0] }}');background-size:cover;background-position:center"></div>
+      <h3 class="cat-name">{{ cat_name }}</h3>
       <p class="cat-desc">{{ col.desc }}</p>
-      {% assign tag_name = col.name | remove: col.icon | strip %}
       <span class="cat-count">{{ col.time }}</span>
     </a>
     {% endfor %}
