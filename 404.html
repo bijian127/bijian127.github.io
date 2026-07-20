@@ -1,15 +1,16 @@
 ---
-layout: page
-title: Page not found
-image:
+layout: default
+page_id: home
+title: 页面未找到
 permalink: /404.html
 ---
-<div class="container">
-  <div class="row">
-    <div class="col col-12" style="text-align: center">
-      <h2>404</h2>
-      <p>The requested page could not be found.</p>
-      <p><a href="{{site.baseurl}}/">Back to the bLog</a></p>
-    </div>
+
+<section class="section wrap" style="text-align:center;padding:120px 0">
+  <span class="kicker">404</span>
+  <h1 style="font-family:var(--serif);font-size:48px;margin:16px 0">页面未找到</h1>
+  <p style="color:var(--ink-muted);font-size:16px">你访问的页面不存在或已被移动。</p>
+  <div class="cta-row" style="margin-top:28px">
+    <a class="btn-primary" href="{{ site.baseurl }}/">返回首页</a>
+    <a class="btn-ghost" href="{{ site.baseurl }}/blog">浏览博客</a>
   </div>
-</div>
+</section>

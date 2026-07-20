@@ -4,6 +4,7 @@ page_id: about
 title: 关于我
 description: 毕健 — 系统工程师，新能源领域系统方案设计，不庸AI 博客作者
 author: Bi
+permalink: /about
 ---
 
 我是 Bi，一名系统工程师，目前在新能源领域从事系统方案设计。
