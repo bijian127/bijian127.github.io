@@ -22,6 +22,23 @@ permalink: /blog
     {% endfor %}
   </div>
 
+  <!-- 精选文章：全部（最新一篇） -->
+  {% assign featured_all = site.posts | first %}
+  {% if featured_all %}
+  {% assign fall_tags = featured_all.tags | default: featured_all.categories %}
+  <a class="featured-post glass" href="{{ featured_all.url | relative_url }}" data-cat="all">
+    <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
+    <div class="featured-content">
+      {% if fall_tags and fall_tags.size > 0 %}
+      <span class="tag-pill">{{ fall_tags[0] }}</span>
+      {% endif %}
+      <h3 class="post-title">{{ featured_all.title }}</h3>
+      <p class="post-excerpt">{{ featured_all.excerpt | strip_html | truncate: 120 }}</p>
+      <span class="post-meta">{{ featured_all.date | date: '%Y-%m-%d' }} · {{ featured_all.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
+    </div>
+  </a>
+  {% endif %}
+
   <!-- 精选文章（每个分类最新一篇） -->
   {% assign all_cats_list = site.posts | map: 'categories' | flatten | uniq | sort %}
   {% for cat in all_cats_list %}
