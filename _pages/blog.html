@@ -22,22 +22,32 @@ permalink: /blog
     {% endfor %}
   </div>
 
-  <!-- 精选文章（最新一篇） -->
-  {% assign featured = site.posts | first %}
-  {% if featured %}
-  {% assign feat_tags = featured.tags | default: featured.categories %}
-  <a class="featured-post glass" href="{{ featured.url | relative_url }}" data-cat="{{ feat_tags | first | default: '' }}">
-    <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
-    <div class="featured-content">
-      {% if feat_tags and feat_tags.size > 0 %}
-      <span class="tag-pill">{{ feat_tags[0] }}</span>
+  <!-- 精选文章（每个分类最新一篇） -->
+  {% assign all_cats_list = site.posts | map: 'categories' | flatten | uniq | sort %}
+  {% for cat in all_cats_list %}
+    {% assign cat_feat = nil %}
+    {% for p in site.posts %}
+      {% assign pc = p.tags | default: p.categories %}
+      {% if pc contains cat %}
+        {% assign cat_feat = p %}
+        {% break %}
       {% endif %}
-      <h3 class="post-title">{{ featured.title }}</h3>
-      <p class="post-excerpt">{{ featured.excerpt | strip_html | truncate: 120 }}</p>
-      <span class="post-meta">{{ featured.date | date: '%Y-%m-%d' }} · {{ featured.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
-    </div>
-  </a>
-  {% endif %}
+    {% endfor %}
+    {% if cat_feat %}
+    {% assign ctags = cat_feat.tags | default: cat_feat.categories %}
+    <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}"{% if forloop.first == false %} style="display:none"{% endif %}>
+      <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
+      <div class="featured-content">
+        {% if ctags and ctags.size > 0 %}
+        <span class="tag-pill">{{ ctags[0] }}</span>
+        {% endif %}
+        <h3 class="post-title">{{ cat_feat.title }}</h3>
+        <p class="post-excerpt">{{ cat_feat.excerpt | strip_html | truncate: 120 }}</p>
+        <span class="post-meta">{{ cat_feat.date | date: '%Y-%m-%d' }} · {{ cat_feat.content | number_of_words | divided_by: 300 | plus: 1 }} 分钟阅读</span>
+      </div>
+    </a>
+    {% endif %}
+  {% endfor %}
 
   <!-- 全部文章列表 -->
   <div class="post-list">

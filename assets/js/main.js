@@ -25,7 +25,6 @@
 
   // 博客筛选
   var filters = document.querySelectorAll(".filter-pill");
-  var posts = document.querySelectorAll(".post-card, .featured-post");
 
   function activateFilter(cat) {
     if (!filters.length) return;
@@ -39,7 +38,24 @@
       if (allPill) allPill.classList.add("active");
       cat = "all";
     }
-    posts.forEach(function (post) {
+
+    // 精选文章：只显示匹配当前分类的那一个
+    var featuredPosts = document.querySelectorAll(".featured-post");
+    var firstFp = null;
+    featuredPosts.forEach(function (fp) {
+      var fpCat = fp.getAttribute("data-cat");
+      var show = fpCat === cat;
+      if (show && !firstFp) firstFp = fp;
+      fp.style.display = show ? "" : "none";
+    });
+    // 如果当前分类没有专属 featured-post，显示第一个（全部模式下）
+    if (!firstFp && cat === "all" && featuredPosts.length > 0) {
+      featuredPosts[0].style.display = "";
+    }
+
+    // 普通文章卡：匹配当前分类或全部
+    var postCards = document.querySelectorAll(".post-card");
+    postCards.forEach(function (post) {
       var postCat = post.getAttribute("data-cat");
       var show = cat === "all" || !postCat || postCat === cat;
       post.style.display = show ? "" : "none";
