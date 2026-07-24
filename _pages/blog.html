@@ -68,7 +68,7 @@ permalink: /blog
 
   <!-- 全部文章列表 -->
   <div class="post-list">
-    {% for post in site.posts %}
+    {% for post in site.posts offset:1 %}
     {% assign p_tags = post.tags | default: post.categories %}
     <a class="post-card glass" href="{{ post.url | relative_url }}" data-cat="{{ p_tags | first | default: '' }}">
       <div class="post-thumb
