@@ -1,0 +1,20 @@
+<!-- Category → pillar cover image mapping -->
+{%- if include.cat == "早八AI速报" -%}
+  {%- assign cover_img = "pillar-01-morning-report.jpg" -%}
+{%- elsif include.cat == "摸鱼实验室" -%}
+  {%- assign cover_img = "pillar-02-slacking-lab.jpg" -%}
+{%- elsif include.cat == "办公神技铺" -%}
+  {%- assign cover_img = "pillar-03-office-skills.jpg" -%}
+{%- elsif include.cat == "工具工坊" -%}
+  {%- assign cover_img = "pillar-04-tool-workshop.jpg" -%}
+{%- elsif include.cat == "Prompt炼金术" -%}
+  {%- assign cover_img = "pillar-05-prompt-alchemy.jpg" -%}
+{%- else -%}
+  {%- assign cover_img = nil -%}
+{%- endif -%}
+
+{%- if cover_img -%}
+<img class="{{ include.class }}" src="{{ '/assets/images/' | append: cover_img | relative_url }}" alt="{{ include.cat | default: 'cover' }}" style="object-fit:cover">
+{%- else -%}
+<div class="{{ include.class }} cv-violet"></div>
+{%- endif -%}
