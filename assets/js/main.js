@@ -53,11 +53,13 @@
       featuredPosts[0].style.display = "";
     }
 
-    // 普通文章卡：匹配当前分类或全部
+    // 普通文章卡：匹配当前分类或全部，跳过与 featured 重复的
     var postCards = document.querySelectorAll(".post-card");
+    var featUrl = firstFp ? firstFp.getAttribute("data-url") : null;
     postCards.forEach(function (post) {
       var postCat = post.getAttribute("data-cat");
       var show = cat === "all" || !postCat || postCat === cat;
+      if (show && featUrl && post.getAttribute("data-url") === featUrl) show = false;
       post.style.display = show ? "" : "none";
     });
   }

@@ -26,7 +26,7 @@ permalink: /blog
   {% assign featured_all = site.posts | first %}
   {% if featured_all %}
   {% assign fall_tags = featured_all.tags | default: featured_all.categories %}
-  <a class="featured-post glass" href="{{ featured_all.url | relative_url }}" data-cat="all">
+  <a class="featured-post glass" href="{{ featured_all.url | relative_url }}" data-cat="all" data-url="{{ featured_all.url | relative_url }}">
     {%- assign fsplit = featured_all.content | split: '](/assets/images/' -%}
     {%- if fsplit.size > 1 -%}
     {%- assign fimg = fsplit[1] | split: ')' | first -%}
@@ -58,7 +58,7 @@ permalink: /blog
     {% endfor %}
     {% if cat_feat %}
     {% assign ctags = cat_feat.tags | default: cat_feat.categories %}
-    <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}" style="display:none">
+    <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}" data-url="{{ cat_feat.url | relative_url }}" style="display:none">
       {%- assign cfsplit = cat_feat.content | split: '](/assets/images/' -%}
       {%- if cfsplit.size > 1 -%}
       {%- assign cfimg = cfsplit[1] | split: ')' | first -%}
@@ -80,9 +80,9 @@ permalink: /blog
 
   <!-- 全部文章列表 -->
   <div class="post-list">
-    {% for post in site.posts offset:1 %}
+    {% for post in site.posts %}
     {% assign p_tags = post.tags | default: post.categories %}
-    <a class="post-card glass" href="{{ post.url | relative_url }}" data-cat="{{ p_tags | first | default: '' }}">
+    <a class="post-card glass" href="{{ post.url | relative_url }}" data-cat="{{ p_tags | first | default: '' }}" data-url="{{ post.url | relative_url }}">
 
       {%- assign tsplit = post.content | split: '](/assets/images/' -%}
       {%- if tsplit.size > 1 -%}
