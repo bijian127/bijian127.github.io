@@ -58,7 +58,7 @@ permalink: /blog
     {% endfor %}
     {% if cat_feat %}
     {% assign ctags = cat_feat.tags | default: cat_feat.categories %}
-    <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}"{% if forloop.first == false %} style="display:none"{% endif %}>
+    <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}" style="display:none">
       {%- assign cfsplit = cat_feat.content | split: '](/assets/images/' -%}
       {%- if cfsplit.size > 1 -%}
       {%- assign cfimg = cfsplit[1] | split: ')' | first -%}
