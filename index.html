@@ -30,9 +30,9 @@ page_id: home
     {% for post in recent_posts %}
     <a class="blog-card glass" href="{{ post.url | relative_url }}">
 
-      {%- assign cardsplit = post.content | split: '](/assets/images/' -%}
+      {%- assign cardsplit = post.content | split: 'src="/assets/images/"' -%}
       {%- if cardsplit.size > 1 -%}
-      {%- assign cardimg = cardsplit[1] | split: ')' | first -%}
+      {%- assign cardimg = cardsplit[1] | split: '"' | first -%}
       <img class="card-cover" src="{{ '/assets/images/' | append: cardimg | relative_url }}" alt="{{ post.title }}" style="object-fit:cover">
       {%- else -%}
         {% assign colors = "cv-violet,cv-mint,cv-peach,cv-gold" | split: "," %}
