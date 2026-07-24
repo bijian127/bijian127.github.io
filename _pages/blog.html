@@ -27,7 +27,13 @@ permalink: /blog
   {% if featured_all %}
   {% assign fall_tags = featured_all.tags | default: featured_all.categories %}
   <a class="featured-post glass" href="{{ featured_all.url | relative_url }}" data-cat="all">
+    {%- assign fsplit = featured_all.content | split: '](/assets/images/' -%}
+    {%- if fsplit.size > 1 -%}
+    {%- assign fimg = fsplit[1] | split: ')' | first -%}
+    <img class="featured-cover" src="{{ '/assets/images/' | append: fimg | relative_url }}" alt="{{ featured_all.title }}" style="object-fit:cover">
+    {%- else -%}
     <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
+    {%- endif -%}
     <div class="featured-content">
       {% if fall_tags and fall_tags.size > 0 %}
       <span class="tag-pill">{{ fall_tags[0] }}</span>
@@ -53,7 +59,13 @@ permalink: /blog
     {% if cat_feat %}
     {% assign ctags = cat_feat.tags | default: cat_feat.categories %}
     <a class="featured-post glass" href="{{ cat_feat.url | relative_url }}" data-cat="{{ cat }}"{% if forloop.first == false %} style="display:none"{% endif %}>
+      {%- assign cfsplit = cat_feat.content | split: '](/assets/images/' -%}
+      {%- if cfsplit.size > 1 -%}
+      {%- assign cfimg = cfsplit[1] | split: ')' | first -%}
+      <img class="featured-cover" src="{{ '/assets/images/' | append: cfimg | relative_url }}" alt="{{ cat_feat.title }}" style="object-fit:cover">
+      {%- else -%}
       <div class="featured-cover" style="background:linear-gradient(135deg,var(--violet-1),var(--peach-1))"></div>
+      {%- endif -%}
       <div class="featured-content">
         {% if ctags and ctags.size > 0 %}
         <span class="tag-pill">{{ ctags[0] }}</span>
@@ -71,10 +83,17 @@ permalink: /blog
     {% for post in site.posts offset:1 %}
     {% assign p_tags = post.tags | default: post.categories %}
     <a class="post-card glass" href="{{ post.url | relative_url }}" data-cat="{{ p_tags | first | default: '' }}">
+
+      {%- assign tsplit = post.content | split: '](/assets/images/' -%}
+      {%- if tsplit.size > 1 -%}
+      {%- assign timg = tsplit[1] | split: ')' | first -%}
+      <img class="post-thumb" src="{{ '/assets/images/' | append: timg | relative_url }}" alt="{{ post.title }}" style="object-fit:cover">
+      {%- else -%}
       <div class="post-thumb
         {% assign mod3 = forloop.index0 | modulo: 4 %}
         {% if mod3 == 0 %}cv-violet{% elsif mod3 == 1 %}cv-mint{% elsif mod3 == 2 %}cv-peach{% else %}cv-gold{% endif %}
       "></div>
+      {%- endif -%}
       <div class="post-content">
         <h3 class="post-title">{{ post.title }}</h3>
         <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</p>

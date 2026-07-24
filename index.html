@@ -29,13 +29,16 @@ page_id: home
     {% assign recent_posts = site.posts | slice: 0, 4 %}
     {% for post in recent_posts %}
     <a class="blog-card glass" href="{{ post.url | relative_url }}">
-      {% if post.image %}
-      <img class="card-cover" src="{{ post.image | relative_url }}" alt="{{ post.title }}" style="object-fit:cover">
-      {% else %}
+
+      {%- assign cardsplit = post.content | split: '](/assets/images/' -%}
+      {%- if cardsplit.size > 1 -%}
+      {%- assign cardimg = cardsplit[1] | split: ')' | first -%}
+      <img class="card-cover" src="{{ '/assets/images/' | append: cardimg | relative_url }}" alt="{{ post.title }}" style="object-fit:cover">
+      {%- else -%}
         {% assign colors = "cv-violet,cv-mint,cv-peach,cv-gold" | split: "," %}
         {% assign idx = forloop.index0 | modulo: 4 %}
       <div class="card-cover {{ colors[idx] }}"></div>
-      {% endif %}
+      {%- endif -%}
       <div class="card-body">
         {% assign post_tags = post.tags | default: post.categories %}
         {% if post_tags and post_tags.size > 0 %}
