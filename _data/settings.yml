@@ -32,14 +32,14 @@ social:
 
 #-------------------------------
 # Columns Section (首页分类卡片)
-columns-title: 六大常驻板块
+columns-title: 七大常驻板块
 columns:
-  - { icon: "🌅", name: "早八AI速报", desc: "3分钟可学的轻量AI技巧", time: "周一/周三 早8点", color: "#f5722b" }
-  - { icon: "🎮", name: "摸鱼实验室", desc: "用AI自动化重复工作，省时间才是真摸鱼", time: "周二 晚8点", color: "#ff9f43" }
-  - { icon: "💼", name: "办公神技铺", desc: "深度办公场景AI实战，前后对比", time: "周六 上午", color: "#e67e22" }
-  - { icon: "🔧", name: "工具工坊", desc: "AI + 低代码做专属提效工具", time: "周四 晚8点", color: "#d35400" }
-  - { icon: "⚗️", name: "Prompt 炼金术", desc: "系统化Prompt教学 + 可复用模板", time: "周五 早8点", color: "#c0392b" }
-  - { icon: "📬", name: "读者投稿局", desc: "UGC互动 + 社区感构建", time: "周日 晚8点", color: "#8e44ad" }
+  - { icon: "🌅", name: "早八AI速报", desc: "本周AI热点速览，6条最值得关注的新闻", time: "周一", color: "#f5722b" }
+  - { icon: "🎮", name: "摸鱼实验室", desc: "用AI自动化重复工作，省时间才是真摸鱼", time: "周二", color: "#ff9f43" }
+  - { icon: "🔧", name: "工具工坊", desc: "AI工具深度测评，搜GitHub trending精选", time: "周三", color: "#d35400" }
+  - { icon: "⚗️", name: "Prompt炼金术", desc: "场景化Prompt优化对比 + 可复用模板", time: "周四", color: "#c0392b" }
+  - { icon: "💼", name: "办公神技铺", desc: "高频办公痛点 + AI提速步骤", time: "周五", color: "#e67e22" }
+  - { icon: "📡", name: "大厂雷达站", desc: "大厂AI落地案例深度拆解，每周一个案例", time: "周日", color: "#2980b9" }
 
 #-------------------------------
 # About Section

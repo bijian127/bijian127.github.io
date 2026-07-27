@@ -57,7 +57,7 @@ page_id: home
     <a class="link-pill" href="{{ site.baseurl }}/blog">查看全部 →</a>
   </div>
   <div class="cat-grid">
-    {% assign pillar_imgs = "pillar-01-morning-report.jpg,pillar-02-slacking-lab.jpg,pillar-03-office-skills.jpg,pillar-04-tool-workshop.jpg,pillar-05-prompt-alchemy.jpg,pillar-06-reader-submission.jpg" | split: "," %}
+    {% assign pillar_imgs = "pillar-01-morning-report.jpg,pillar-02-slacking-lab.jpg,pillar-04-tool-workshop.jpg,pillar-05-prompt-alchemy.jpg,pillar-03-office-skills.jpg,pillar-07-radar-station.jpg" | split: "," %}
     {% for col in site.data.settings.columns limit: 4 %}
     {% assign cat_name = col.name | remove: col.icon | strip %}
     <a class="cat-card glass" href="{{ site.baseurl }}/blog?cat={{ cat_name | url_encode }}">
