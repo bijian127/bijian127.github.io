@@ -6,3 +6,4 @@ Gemfile.lock
 .jekyll-cache
 .vercel
 .wx_published.json
+.pre-clean-backup/
